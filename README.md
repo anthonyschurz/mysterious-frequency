@@ -11,3 +11,8 @@ Tentative instructions:
 7. create and download your API keys .json file and reference it in server.js, line 3
 8. from the command line, run `export GOOGLE_APPLICATION_CREDENTIALS=` and enter the name of your new .json file 
 
+If all is well, you should be able to run the following command in Terminal and get a `result` array of objects back with `desc`, `mid` and `score` values:
+
+`node server.js resources/blue_moon_square.jpg`
+
+
