@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const router = express.Router();
-const  bodyParser = require('body-parser');
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
+var router = express.Router();
+var  bodyParser = require('body-parser');
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-const result = [];
+var result = [];
 
 app.use('/', router);
 
@@ -17,13 +17,30 @@ router.post('/api/labels', urlencodedParser, function(req, res){
     console.log('no request found');
   } else {
   // call detectLabels on post request params
-  result.push(req.body);
+
+
+    if (module === require.main) {
+      if (process.argv.length < 3) {
+        console.log('Usage: node labelDetection <inputFile>');
+        process.exit(1);
+      }
+      // var inputFile = process.argv[2];
+
+      main(req.body, console.log);
+    }
+
+  // result.push(req.body);
 
   // return json
-  res.json(result)
+  // res.json(result);
   }
 });
 
+
+
+app.listen(port, function(){
+    console.log("Server started on port: ", port);
+});
 
 var config = {
     projectId: 'mysterious-frequency',
@@ -53,12 +70,5 @@ function main (inputFile, callback) {
   });
 }
 
-if (module === require.main) {
-  if (process.argv.length < 3) {
-    console.log('Usage: node labelDetection <inputFile>');
-    process.exit(1);
-  }
-  var inputFile = process.argv[2];
-  main(inputFile, console.log);
-}
+
 
