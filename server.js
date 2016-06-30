@@ -1,3 +1,11 @@
+// require express
+
+
+// post '/api/labels'
+// call detectLabels on post request params
+// return json
+
+
 var config = {
     projectId: 'mysterious-frequency',
     keyFilename: './mysterious-frequency-2b2baff55708.json'
