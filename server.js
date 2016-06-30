@@ -1,9 +1,28 @@
-// require express
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+const router = express.Router();
+const  bodyParser = require('body-parser');
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+const result = [];
+
+app.use('/', router);
 
 
-// post '/api/labels'
-// call detectLabels on post request params
-// return json
+
+router.post('/api/labels', urlencodedParser, function(req, res){
+  if(!req.body){
+    console.log('no request found');
+  } else {
+  // call detectLabels on post request params
+  result.push(req.body);
+
+  // return json
+  res.json(result)
+  }
+});
 
 
 var config = {
